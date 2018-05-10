@@ -11,7 +11,18 @@ import Serie from './Serie';
 import SerieService from '../services/serie.service';
 
 export default {
-  components: { Serie }
+  components: { Serie },
+  data() {
+    return {
+      series: []
+    };
+  },
+  mounted() {
+    SerieService.getSeries('bad').then(series => {
+      this.series = series;
+      console.log(series);
+    });
+  }
 };
 </script>
 
