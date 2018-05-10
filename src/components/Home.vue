@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <serie v-for="serie in series" :serieData="serie" :key="serie.id"></serie>
+    <serie v-for="serie in series" :serieData="serie" :key="serie.id" @favClicked="serieClicked"></serie>
   </div>
 </template>
 

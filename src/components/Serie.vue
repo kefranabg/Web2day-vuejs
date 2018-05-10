@@ -1,6 +1,6 @@
 <template>
     <li class="list-group-item">
-        <i class="fa fa-star"></i>
+        <i class="fa fa-star" @click="onClick()" ></i>
         <div class="media">
             <div class="media-left">
                 <img class="media-object" v-if="serieData.image" :src="serieData.image.medium" >
@@ -19,6 +19,11 @@ import Logo from '../assets/logo.png';
 export default {
   props: {
     serieData: Object
+  },
+  methods: {
+    onClick() {
+      this.$emit('favClicked', this.serieData);
+    }
   }
 };
 </script>
