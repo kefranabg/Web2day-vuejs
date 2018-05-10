@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    this.favorites = FavoritesService.series;
+    this.favorites = FavoritesService.favorites;
   }
 };
 </script>
