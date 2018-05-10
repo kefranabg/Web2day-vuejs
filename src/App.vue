@@ -1,29 +1,17 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Home</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Favorites</a>
-          </li>
-        </ul>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-info my-2 my-sm-0">Search</button>
-        </form>
-      </div>
-    </nav>
+    <navbar></navbar>
+    <home></home>
   </div>
 </template>
 
 <script>
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: { Home, Navbar }
 };
 </script>
 
