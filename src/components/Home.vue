@@ -8,6 +8,7 @@
 
 <script>
 import Serie from './Serie';
+import SerieService from '../services/serie.service';
 
 export default {
   components: { Serie }
