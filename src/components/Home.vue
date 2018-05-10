@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="list">
+    <serie></serie>
+    <serie></serie>
+    <serie></serie>
   </div>
 </template>
 
@@ -12,5 +15,9 @@ export default {
 </script>
 
 <style>
-
+.list {
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
 </style>

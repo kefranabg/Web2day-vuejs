@@ -3,18 +3,28 @@
         <i class="fa fa-star"></i>
         <div class="media">
             <div class="media-left">
-                <img class="media-object" src="../assets/logo.png" >
+                <img class="media-object" :src="image.medium" >
             </div>
             <div class="media-body">
-                <h4 class="media-heading">Title</h4>
-                <div>Summary</div>
+                <h4 class="media-heading">{{name}}</h4>
+                <div>{{summary}}</div>
             </div>
         </div>
     </li>
 </template>
 
 <script>
-export default {};
+import Logo from '../assets/logo.png';
+
+export default {
+  data() {
+    return {
+      name: 'This is the title',
+      summary: 'This is the summary',
+      image: { medium: Logo }
+    };
+  }
+};
 </script>
 
 <style>
