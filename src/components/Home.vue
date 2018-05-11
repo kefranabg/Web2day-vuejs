@@ -1,5 +1,9 @@
 <template>
   <div class="list">
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-info my-2 my-sm-0">Search</button>
+    </form>
     <serie v-for="serie in series" :serieData="serie" :key="serie.id" @favClicked="serieClicked"></serie>
   </div>
 </template>
@@ -17,11 +21,15 @@ export default {
     };
   },
   mounted() {
-    SerieService.getSeries('bad').then(series => (this.series = series));
+    this.loadSeries('bad');
   },
   methods: {
     serieClicked(serie) {
       FavoritesService.isFavorite(serie) ? FavoritesService.removeFavorite(serie) : FavoritesService.addFavorite(serie);
+    },
+    loadSeries(query) {
+      this.series = [];
+      SerieService.getSeries(query).then(series => (this.series = series));
     }
   }
 };
@@ -32,5 +40,9 @@ export default {
   width: 80%;
   margin: auto;
   margin-top: 50px;
+}
+
+.form-inline {
+  padding-bottom: 20px;
 }
 </style>
