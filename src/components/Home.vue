@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" v-model="search" @keyup="loadSeries(search)" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-info my-2 my-sm-0">Search</button>
     </form>
     <serie v-for="serie in series" :serieData="serie" :key="serie.id" @favClicked="serieClicked"></serie>
@@ -17,7 +17,8 @@ export default {
   components: { Serie },
   data() {
     return {
-      series: []
+      series: [],
+      search: ''
     };
   },
   mounted() {
