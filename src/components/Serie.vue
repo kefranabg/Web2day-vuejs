@@ -1,6 +1,6 @@
 <template>
     <li class="list-group-item">
-        <i class="fa fa-star-o" @click="onClick()" ></i>
+        <i class="fa" :class="[isFavorite ? 'fa-star' : 'fa-star-o']" @click="onClick()" ></i>
         <div class="media">
             <div class="media-left">
                 <img class="media-object" v-if="serieData.image" :src="serieData.image.medium" >
@@ -29,6 +29,11 @@ export default {
   methods: {
     onClick() {
       this.$emit('favClicked', this.serieData);
+    }
+  },
+  computed: {
+    isFavorite() {
+      return this.favorites.find(fav => fav.id === this.serieData.id);
     }
   }
 };
