@@ -1,6 +1,6 @@
 <template>
     <li class="list-group-item">
-        <i class="fa" :class="[isFavorite ? 'fa-star' : 'fa-star-o']" @click="onClick()" ></i>
+        <i class="fa" :class="[isSerieFavorite ? 'fa-star' : 'fa-star-o']" @click="onClick()" ></i>
         <div class="media">
             <div class="media-left">
                 <img class="media-object" v-if="serieData.image" :src="serieData.image.medium" >
@@ -14,26 +14,14 @@
 </template>
 
 <script>
-import Logo from '../assets/logo.png';
-import FavoritesService from '../services/favorites.service';
-
 export default {
   props: {
-    serieData: Object
-  },
-  data() {
-    return {
-      favorites: FavoritesService.favorites
-    };
+    serieData: Object,
+    isSerieFavorite: Boolean
   },
   methods: {
     onClick() {
       this.$emit('favClicked', this.serieData);
-    }
-  },
-  computed: {
-    isFavorite() {
-      return this.favorites.find(fav => fav.id === this.serieData.id);
     }
   }
 };

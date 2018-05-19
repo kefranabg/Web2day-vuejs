@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Favorites</h1>
-    <li v-for="favorite in favorites" :key="favorite.id" class="list-group-item">
+    <li v-for="favorite in favoriteSeries" :key="favorite.id" class="list-group-item">
           <div class="media">
               <div class="media-left">
                   <img class="media-object" v-if="favorite.image" :src="favorite.image.medium" >
@@ -16,17 +16,10 @@
 </template>
 
 <script>
-import FavoritesService from '../services/favorites.service';
+import { mapGetters } from 'vuex';
 
 export default {
-  data() {
-    return {
-      favorites: []
-    };
-  },
-  mounted() {
-    this.favorites = FavoritesService.favorites;
-  }
+  computed: mapGetters(['favoriteSeries'])
 };
 </script>
 

@@ -1,36 +1,33 @@
 <template>
   <div class="list">
     <form class="form-inline">
-      <input class="form-control mr-sm-2" v-model="search" @keyup="loadSeries(search)" type="search" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" v-model="currentSearch" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-info my-2 my-sm-0">Search</button>
     </form>
-    <serie v-for="serie in series" :serieData="serie" :key="serie.id" @favClicked="serieClicked"></serie>
+    <serie v-for="serie in series" :serieData="serie" :isSerieFavorite="isSerieFavorite(serie.id)" :key="serie.id" @favClicked="toggleSerieIsFavorite($event.id)"></serie>
   </div>
 </template>
 
 <script>
 import Serie from './Serie';
-import SerieService from '../services/serie.service';
-import FavoritesService from '../services/favorites.service';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   components: { Serie },
-  data() {
-    return {
-      series: [],
-      search: ''
-    };
-  },
   mounted() {
-    this.loadSeries('bad');
+    this.setSeries('bad');
   },
-  methods: {
-    serieClicked(serie) {
-      FavoritesService.isFavorite(serie) ? FavoritesService.removeFavorite(serie) : FavoritesService.addFavorite(serie);
-    },
-    loadSeries(query) {
-      this.series = [];
-      SerieService.getSeries(query).then(series => (this.series = series));
+  methods: mapActions(['setSeries', 'toggleSerieIsFavorite']),
+  computed: {
+    ...mapState(['series', 'search']),
+    ...mapGetters(['isSerieFavorite']),
+    currentSearch: {
+      get() {
+        return this.search;
+      },
+      set(newSearch) {
+        this.setSeries(newSearch);
+      }
     }
   }
 };
