@@ -21,14 +21,15 @@ export default {
     };
   },
   mounted() {
-    this.loadSeries('bad');
+    this.loadSeries();
   },
   methods: {
     serieClicked(serie) {
       FavoritesService.isFavorite(serie) ? FavoritesService.removeFavorite(serie) : FavoritesService.addFavorite(serie);
     },
-    loadSeries(query) {
+    loadSeries() {
       this.series = [];
+      const query = this.search ? this.search : 'bad'
       SerieService.getSeries(query).then(series => (this.series = series));
     }
   }
