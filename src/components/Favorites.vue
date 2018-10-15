@@ -1,28 +1,24 @@
 <template>
-  <div>
-    <h1>Favorites</h1>
-    <li v-for="favorite in favorites" :key="favorite.id" class="list-group-item">
-          <div class="media">
-              <div class="media-left">
-                  <img class="media-object" v-if="favorite.image" :src="favorite.image.medium" >
-              </div>
-              <div class="media-body">
-                  <h4 class="media-heading">{{favorite.name}}</h4>
-                  <div v-html="favorite.summary"></div>
-              </div>
-          </div>
-      </li>
-  </div>
+    <div>
+        <h1>Favorites</h1>
+        <div class="list">
+            <serie v-for="favorite in favorites" :serieData="favorite" :key="favorite.id"></serie>
+        </div>
+    </div>
 </template>
 
 <script>
 import FavoritesService from '../services/favorites.service';
+import Serie from './Serie';
 
 export default {
   data() {
     return {
       favorites: []
     };
+  },
+  components: {
+      Serie
   },
   mounted() {
     this.favorites = FavoritesService.favorites;
@@ -31,5 +27,9 @@ export default {
 </script>
 
 <style>
-
+.list {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
 </style>
