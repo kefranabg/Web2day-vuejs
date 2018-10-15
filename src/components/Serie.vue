@@ -3,11 +3,11 @@
         <i class="fa fa-star"></i>
         <div class="media">
             <div class="media-left">
-                <img class="media-object" :src="image.medium" >
+                <img class="media-object" :src="serieData.image.medium" >
             </div>
             <div class="media-body">
-                <h4 class="media-heading">{{name}}</h4>
-                <div>{{summary}}</div>
+                <h4 class="media-heading">{{serieData.name}}</h4>
+                <div>{{serieData.summary}}</div>
             </div>
         </div>
     </li>
@@ -19,9 +19,11 @@ import Logo from '../assets/logo.png';
 export default {
   data() {
     return {
-      name: 'This is the title',
-      summary: 'This is the summary',
-      image: { medium: Logo }
+      serieData: {
+        name: 'This is the title',
+        summary: 'This is the summary',
+        image: { medium: Logo }
+      }
     };
   }
 };
